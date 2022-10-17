@@ -31,7 +31,22 @@ app.post("/user", post);
 
 // this is how we get something with uid from UI/postman
 app.get("/user", (req,res) => {
-
+    let users=await getUsersInLimitPromisified();
+    try{
+        let readyUsers=users.map((user)=>{
+            return {
+                userName:user.user_name,
+                userEmail:user.email,
+                userBio:user.bio,
+                userPicture:user.pimage
+            }
+        })
+        res.status(200).send({users:readyUsers})
+    }
+    catch(err){
+        console.log(500,err);
+        res.status(500).send({msg:"Unable to fetch user details"})
+    }
 })
 
 app.listen(3000, () =>{
