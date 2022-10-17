@@ -6,6 +6,7 @@ const postRouter = require("./router/postRouter");
 const authRouter = require("./router/authRouter");
 const likeRouter = require("./router/likeRouter");
 const commentRouter = require("./router/commentRouter");
+const handleError=require("./router/parseHandler");
 let cookie = require("cookie-session");
 const passport = require("passport");
 
@@ -31,6 +32,11 @@ app.use("/api/request", requestRouter);
 app.use("/api/post", postRouter);
 app.use("/api/like", likeRouter);
 app.use("/api/comment", commentRouter);
+
+//format exception handler
+app.use((req, res, next) => {
+    handleError(express.json(), req, res, next);
+});
 
 //last route 
 //sends status 404 and related message
