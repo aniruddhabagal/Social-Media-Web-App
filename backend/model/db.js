@@ -14,14 +14,12 @@ function handleDisconnect() {
   
   // connection.connect();
     
-  connection.on("error", function (err) {
-    console.log("db error", err);
-    if (err.code === "PROTOCOL_CONNECTION_LOST") {
-      handleDisconnect(); 
-    } else {
-      throw err;
-    }
-  });
+  connection.connect()
+  .catch(err=>{
+    console.log(err.code,'\n',err)
+    return err
+  })
+
 }
 handleDisconnect();
 

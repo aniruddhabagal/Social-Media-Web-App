@@ -32,6 +32,11 @@ app.use("/api/post", postRouter);
 app.use("/api/like", likeRouter);
 app.use("/api/comment", commentRouter);
 
+//last route 
+//sends status 404 and related message
+app.use('*',(req,res)=>{
+    res.status(404).send({message:'Not Found. Please check the URL'})
+})
 
 app.listen(3000,function(){
     console.log("server started!!");
