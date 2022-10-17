@@ -147,6 +147,16 @@ function getUserByNamePromisified(req){
         })
     })
 }
+function getUsersInLimitPromisified(){
+    return new Promise((resolve,reject)=>{
+        let sql="select user_name,name,bio,pimage from user_table limit 5";
+        console.log(sql);
+        connection.query(sql,(error,data)=>{
+            if(error) reject(error)
+            else resolve(data)
+        })
+    })
+}
 async function getUserByName(req, res){
     try{
         let output = await getUserByNamePromisified(req);
@@ -205,6 +215,7 @@ function getUserByIDPromisifiedFromParams(req, res){
 module.exports.createUser = createUser;
 module.exports.getUserByID = getUserByID;
 module.exports.updateUserByID = updateUserByID;
+module.exports.getUsersInLimitPromisified = getUsersInLimitPromisified;
 module.exports.getUserByIDPromisified = getUserByIDPromisified;
 module.exports.getUserByName = getUserByName;
 module.exports.getUserByIDPromisifiedFromParams = getUserByIDPromisifiedFromParams;
