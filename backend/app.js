@@ -6,6 +6,7 @@ const postRouter = require("./router/postRouter");
 const authRouter = require("./router/authRouter");
 const likeRouter = require("./router/likeRouter");
 const commentRouter = require("./router/commentRouter");
+const handleError=require("./router/parseHandler");
 let cookie = require("cookie-session");
 const passport = require("passport");
 
